@@ -32,7 +32,7 @@ const Upload = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/upload",
+        "http://localhost:9000/test-upload",
         formData,
         {
           headers: {
