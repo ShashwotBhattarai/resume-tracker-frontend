@@ -3,11 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Upload from './components/upload.component';
+import SignUpForm from './components/signup.component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Upload />
+    {/* <Upload /> */}
+    <SignUpForm/>
   </React.StrictMode>
 );
 
