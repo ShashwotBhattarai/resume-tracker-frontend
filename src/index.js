@@ -4,12 +4,14 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Upload from './components/upload.component';
 import SignUpForm from './components/signup.component';
+import LoginForm from './components/login.component';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <Upload /> */}
-    <SignUpForm/>
+    {/* <SignUpForm/> */}
+    <LoginForm/>
   </React.StrictMode>
 );
 
