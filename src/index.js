@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     {/* <Upload /> */}
-    {/* <SignUpForm/> */}
-    <LoginForm/>
+    <SignUpForm/>
+    {/* <LoginForm/> */}
   </React.StrictMode>
 );
 
