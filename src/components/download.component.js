@@ -57,16 +57,16 @@ const DownloadComponent = () => {
 			<table>
 				<thead>
 					<tr>
-						<th>User ID</th>
+						<th style={{ fontWeight: "bold", fontSize: "1.2em", padding: "10px" }}>S.N</th>
 						<th>Name</th>
 						<th>Email</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					{candidates.map((candidate) => (
+					{candidates.map((candidate, index) => (
 						<tr key={candidate.user_id}>
-							<td>{candidate.user_id}</td>
+							<td>{index + 1}</td>
 							<td>{candidate.fullname}</td>
 							<td>{candidate.email}</td>
 							<td>
