@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 	});
+
+	const navigate = useNavigate(); // Initialize useNavigate hook
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -28,16 +31,19 @@ const LoginForm = () => {
 				// Store the token in local storage
 				localStorage.setItem("token", token);
 
-				const decoded = jwtDecode(token);
-
-				const role= decoded.role;
-
-				
+				const decoded = await jwtDecode(token);
+				const role = decoded.role;
 
 				// Handle successful login
-				console.log("User logged in successfully"+decoded);
+				console.log("User logged in successfully");
 
-				// y
+				// Check if the role is "candidate" and navigate to the upload component
+				if (role === "candidate") {
+					navigate("/upload"); // Redirect to the upload component
+				} else if (role === "recruiter") {
+					navigate("/download");
+					// Handle other roles or redirect to a different route if needed
+				}
 
 				// Redirect or perform any other actions after successful login
 			} else {
