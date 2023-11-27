@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode";
 
 const LoginForm = () => {
 	const [formData, setFormData] = useState({
@@ -27,8 +28,14 @@ const LoginForm = () => {
 				// Store the token in local storage
 				localStorage.setItem("token", token);
 
+				const decoded = jwtDecode(token);
+
+				const role = decoded.role;
+
 				// Handle successful login
 				console.log("User logged in successfully");
+
+				// y
 
 				// Redirect or perform any other actions after successful login
 			} else {

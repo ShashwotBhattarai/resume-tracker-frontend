@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
-import "./upload.css"
+import "./upload.css";
 
 const Upload = () => {
   const formData = {
     fullname: "",
     email: "",
-    phone_number:"",
+    phone_number: "",
     cv: null,
   };
 
@@ -31,15 +31,15 @@ const Upload = () => {
     console.log("Form submitted:", formData);
 
     try {
-      const response = await axios.post(
-        "http://localhost:9000/test-upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      // Retrieve the token from local storage
+      const token = localStorage.getItem("token");
+
+      const response = await axios.post("http://localhost:4000/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        },
+      });
 
       console.log(response.data);
     } catch (error) {

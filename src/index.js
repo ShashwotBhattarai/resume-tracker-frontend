@@ -1,18 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import Upload from './components/upload.component';
-import SignUpForm from './components/signup.component';
-import LoginForm from './components/login.component';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import Upload from "./components/upload.component";
+import SignUpForm from "./components/signup.component";
+import LoginForm from "./components/login.component";
+import DownloadComponent from "./components/download.component";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    {/* <Upload /> */}
-    <SignUpForm/>
-    {/* <LoginForm/> */}
-  </React.StrictMode>
+	<React.StrictMode>
+		{/* <Upload /> */}
+		{/* <SignUpForm/> */}
+		{/* <LoginForm/> */}
+		<DownloadComponent />
+	</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
