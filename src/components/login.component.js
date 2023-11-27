@@ -30,6 +30,8 @@ const LoginForm = () => {
 
 				const decoded = jwtDecode(token);
 
+				const role= decoded.role;
+
 				
 
 				// Handle successful login
