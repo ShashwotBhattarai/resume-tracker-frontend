@@ -30,10 +30,10 @@ const LoginForm = () => {
 
 				const decoded = jwtDecode(token);
 
-				const role = decoded.role;
+				
 
 				// Handle successful login
-				console.log("User logged in successfully");
+				console.log("User logged in successfully"+decoded);
 
 				// y
 
