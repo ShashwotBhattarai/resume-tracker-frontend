@@ -37,7 +37,7 @@ const Upload = () => {
 			// Retrieve the token from local storage
 			const token = localStorage.getItem("token");
 
-			const response = await axios.post("http://localhost:4000/upload", formData, {
+			const response = await axios.post("http://localhost:4000/candidate/upload", formData, {
 				headers: {
 					"Content-Type": "multipart/form-data",
 					Authorization: `Bearer ${token}`, // Include the token in the Authorization header
