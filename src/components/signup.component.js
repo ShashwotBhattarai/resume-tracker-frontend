@@ -35,10 +35,11 @@ const SignUpForm = () => {
 
 			if (response.ok) {
 				// Handle successful signup
-				const successMessage = "User signed up successfully";
+				const successMessage = "User sign up successfull";
 				console.log(successMessage);
 				setMessage(successMessage);
-				navigate("/");
+
+				setTimeout(() => navigate("/"), 3000);
 			} else {
 				// Handle signup error
 				const errorMessage = "Error signing up user";

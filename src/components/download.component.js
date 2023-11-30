@@ -38,7 +38,6 @@ const DownloadComponent = () => {
 				);
 
 				// Perform actions with the downloaded data if needed
-				console.log("Downloaded data:", downloadResponse.data);
 				const downloadUrl = downloadResponse.data.url;
 
 				// Open the URL in a new tab
