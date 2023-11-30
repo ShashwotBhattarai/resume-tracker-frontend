@@ -9,7 +9,7 @@ const DownloadComponent = () => {
 		// Fetch all candidates information
 		const fetchData = async () => {
 			try {
-				const response = await axios.get("http://localhost:3002/getCandidateInfo/all", {
+				const response = await axios.get("http://localhost:3002/recruiter/getCandidateInfo/all", {
 					headers: { Authorization: `Bearer ${authToken}` },
 				});
 				setCandidates(response.data);
@@ -32,7 +32,7 @@ const DownloadComponent = () => {
 
 				// Make the download API call with authentication token in headers
 				const downloadResponse = await axios.post(
-					"http://localhost:3002/test-download",
+					"http://localhost:3002/recruiter/download",
 					{ key: awsFileKey },
 					{ headers: { Authorization: `Bearer ${authToken}` } }
 				);
