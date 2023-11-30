@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
 	return (
 		<div>
-			<h2>Welcome to the Resume Tracker Application</h2>
+			<h2>Resume Tracker Application</h2>
 			<div>
 				<Link to="/signup">
 					<button style={buttonStyle}>Sign Up</button>
