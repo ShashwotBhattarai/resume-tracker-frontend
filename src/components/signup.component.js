@@ -93,7 +93,11 @@ const SignUpForm = () => {
 
 				<label>
 					Role:
-					<input type="text" name="role" value={formData.role} onChange={handleChange} required />
+					<select name="role" value={formData.role} onChange={handleChange} required>
+						<option value="">Select Role</option>
+						<option value="candidate">Candidate</option>
+						<option value="recruiter">Recruiter</option>
+					</select>
 				</label>
 				<br />
 
