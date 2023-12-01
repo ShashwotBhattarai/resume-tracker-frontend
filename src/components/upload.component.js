@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./upload.css";
+import { useNavigate } from "react-router-dom";
 
 const Upload = () => {
 	const [formData, setFormData] = useState({
@@ -10,6 +11,8 @@ const Upload = () => {
 		cv: null,
 	});
 	const [message, setMessage] = useState("");
+
+	const navigate = useNavigate();
 
 	const handleInputChangeForFullName = (e) => {
 		setFormData({ ...formData, fullname: e.target.value });
@@ -64,50 +67,68 @@ const Upload = () => {
 		}
 	};
 
+	const handleLogout = () => {
+		// Clear the token from local storage
+		localStorage.removeItem("token");
+
+		// Redirect to the home component
+		navigate("/");
+	};
+
 	return (
-		<form onSubmit={handleSubmit}>
-			<label>
-				Full Name:
-				<input
-					type="text"
-					name="fullname"
-					value={formData.fullname}
-					onChange={handleInputChangeForFullName}
-				/>
-			</label>
+		<>
+			<form onSubmit={handleSubmit}>
+				<label>
+					Full Name:
+					<input
+						type="text"
+						name="fullname"
+						value={formData.fullname}
+						onChange={handleInputChangeForFullName}
+					/>
+				</label>
 
-			<br />
+				<br />
 
-			<label>
-				Email:
-				<input type="email" name="email" value={formData.email} onChange={handleInputChangeForEmail} />
-			</label>
+				<label>
+					Email:
+					<input
+						type="email"
+						name="email"
+						value={formData.email}
+						onChange={handleInputChangeForEmail}
+					/>
+				</label>
 
-			<br />
+				<br />
 
-			<label>
-				Phone Number:
-				<input
-					type="text"
-					name="phoneNumber"
-					value={formData.phone_number}
-					onChange={handleInputChangeForPhoneNumber}
-				/>
-			</label>
+				<label>
+					Phone Number:
+					<input
+						type="text"
+						name="phoneNumber"
+						value={formData.phone_number}
+						onChange={handleInputChangeForPhoneNumber}
+					/>
+				</label>
 
-			<br />
+				<br />
 
-			<label>
-				CV:
-				<input type="file" name="cv" onChange={handleInputChangeForCV} />
-			</label>
+				<label>
+					CV:
+					<input type="file" name="cv" onChange={handleInputChangeForCV} />
+				</label>
 
-			<br />
+				<br />
 
-			<button type="submit">Submit</button>
+				<button type="submit">Submit</button>
 
-			{message && <p>{message}</p>}
-		</form>
+				{message && <p>{message}</p>}
+			</form>
+			<button className="logout-button" onClick={handleLogout}>
+				Logout
+			</button>
+		</>
 	);
 };
 
