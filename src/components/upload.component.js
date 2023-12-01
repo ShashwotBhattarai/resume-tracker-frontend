@@ -11,6 +11,7 @@ const Upload = () => {
 		cv: null,
 	});
 	const [message, setMessage] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
 
@@ -33,6 +34,7 @@ const Upload = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log("Form submitted:", formData);
+		setLoading(true);
 		const successMessage = "Might take few seconds to process it";
 		setMessage(successMessage);
 
@@ -48,6 +50,7 @@ const Upload = () => {
 			});
 
 			console.log(response.data);
+			setLoading(false);
 			const successMessage = "User details uploaded successfully";
 
 			setMessage(successMessage);
@@ -59,6 +62,7 @@ const Upload = () => {
 				phone_number: "",
 				cv: null,
 			});
+			document.querySelector('input[type="file"]').value = null;
 
 			// Clear the success message after a certain duration (e.g., 3 seconds)
 			setTimeout(() => setMessage(""), 3000);
@@ -121,7 +125,9 @@ const Upload = () => {
 
 				<br />
 
-				<button type="submit">Submit</button>
+				<button type="submit" disabled={loading}>
+					{loading ? "Submitting..." : "Submit"}
+				</button>
 
 				{message && <p>{message}</p>}
 			</form>
