@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./upload.css";
 import { useNavigate } from "react-router-dom";
+import { uploadCandidateInfo } from "../services/uploadCandidateInfo.service";
 
 const Upload = () => {
 	const [formData, setFormData] = useState({
@@ -10,6 +10,7 @@ const Upload = () => {
 		phone_number: "",
 		cv: null,
 	});
+	const accessToken = localStorage.getItem("token");
 	const [message, setMessage] = useState("");
 	const [loading, setLoading] = useState(false);
 
@@ -33,23 +34,12 @@ const Upload = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("Form submitted:", formData);
 		setLoading(true);
 		const successMessage = "Might take few seconds to process it";
 		setMessage(successMessage);
+		const response = await uploadCandidateInfo(formData, accessToken);
 
-		try {
-			// Retrieve the token from local storage
-			const token = localStorage.getItem("token");
-
-			const response = await axios.post("http://localhost:4000/candidate/upload", formData, {
-				headers: {
-					"Content-Type": "multipart/form-data",
-					Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-				},
-			});
-
-			console.log(response.data);
+		if (response.status === 200) {
 			setLoading(false);
 			const successMessage = "User details uploaded successfully";
 
@@ -64,10 +54,11 @@ const Upload = () => {
 			});
 			document.querySelector('input[type="file"]').value = null;
 
-			// Clear the success message after a certain duration (e.g., 3 seconds)
 			setTimeout(() => setMessage(""), 3000);
-		} catch (error) {
-			console.error("Error sending data to the backend:", error.message);
+		} else {
+			setLoading(false);
+			const errorMessage = "Something went wrong, Please try again";
+			setMessage(errorMessage);
 		}
 	};
 
