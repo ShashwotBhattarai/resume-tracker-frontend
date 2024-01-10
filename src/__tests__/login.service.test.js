@@ -1,7 +1,6 @@
 import { login } from "../services/login.service";
 import mockAxios from "jest-mock-axios";
 import formData from "../testData/formData";
-import jwt from "jsonwebtoken";
 import * as axios from "axios";
 
 describe("Login Service", () => {

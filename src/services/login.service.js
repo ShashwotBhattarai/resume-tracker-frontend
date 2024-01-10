@@ -11,7 +11,7 @@ export async function login(formdata) {
 			// Store the token in local storage
 			localStorage.setItem("token", token);
 
-			const decoded = await jwtDecode(token);
+			const decoded = jwtDecode(token);
 			const role = decoded.role;
 
 			return {
