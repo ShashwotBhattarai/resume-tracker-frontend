@@ -5,8 +5,8 @@ export async function fetchCandidateData(authToken) {
 			headers: { Authorization: `Bearer ${authToken}` },
 		});
 		const candidates = response.data;
-		return candidates;
+		return { status: 200, message: "Candidate data fetched successfully", data: candidates };
 	} catch (error) {
-		throw new Error("error in fetchCandidateData", error.message);
+		throw new Error("unknown error in fetchCandidateData service");
 	}
 }

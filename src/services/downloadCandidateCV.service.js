@@ -11,8 +11,8 @@ export async function downloadCandidateData(selectedCandidate, authToken) {
 
 		const downloadUrl = downloadResponse.data.url;
 
-		return downloadUrl;
+		return { status: 200, message: "Candidate data downloaded successfully", data: downloadUrl };
 	} catch (error) {
-		throw new Error("error in downloadCandidateData", error.message);
+		throw new Error("unknown error in downloadCandidateData service");
 	}
 }

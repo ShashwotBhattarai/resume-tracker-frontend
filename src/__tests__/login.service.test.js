@@ -1,16 +1,23 @@
 import { login } from "../services/login.service";
-import mockAxios from "jest-mock-axios";
 import formData from "../testData/formData";
-import * as axios from "axios";
+import axios from "axios";
+jest.mock("axios");
+import jwt from "jsonwebtoken";
 
 describe("Login Service", () => {
-	afterEach(() => {
-		mockAxios.reset();
-	});
 	test("Login successful", async () => {
-		mockAxios.mockResponse({ status: 200, data: { token: "tokenTest" } });
+		axios.post.mockResolvedValue({ status: 200, data: { token: "tokenTest" } });
+		const jwtdecodeSpy = jest.spyOn(jwt, "decode");
+		jwtdecodeSpy.mockResolvedValue({ role: "admin" });
 		const response = await login(formData);
-
 		expect(response.status).toBe(200);
+	});
+	test("Login unsuccessfull with response", async () => {
+		axios.post.mockResolvedValue({ status: 500, data: { message: "some error" } });
+		try {
+			await login(formData);
+		} catch (error) {
+			expect(error).toEqual(new Error("unknown error in login service"));
+		}
 	});
 });

@@ -14,9 +14,9 @@ export async function uploadCandidateInfo(formData, token) {
 				message: "Candidate info uploaded successfully",
 			};
 		} else {
-			throw new Error("Error: " + response.status);
+			throw new Error("Error in uploading candidate info");
 		}
 	} catch (error) {
-		throw new Error("error in uploadCandidateInfo", error.message);
+		throw new Error("unknown error in uploadCandidateInfo service");
 	}
 }

@@ -6,15 +6,20 @@ const DownloadComponent = () => {
 	const [candidates, setCandidates] = useState([]);
 	const authToken = localStorage.getItem("token");
 
+	async function callfetchCandidateData(authToken) {
+		const response = await fetchCandidateData(authToken);
+		return response.data;
+	}
 	useEffect(() => {
-		fetchCandidateData(authToken).then((candidatesInfo) => {
-			setCandidates(candidatesInfo);
+		callfetchCandidateData(authToken).then((data) => {
+			setCandidates(data);
 		});
 	}, [authToken]);
 
 	const handleDownload = async (user_id) => {
 		const selectedCandidate = candidates.find((candidate) => candidate.user_id === user_id);
-		const downloadUrl = await downloadCandidateData(selectedCandidate, authToken);
+		const downloadResponse = await downloadCandidateData(selectedCandidate, authToken);
+		const downloadUrl = downloadResponse.data;
 
 		window.open(downloadUrl, "_blank");
 	};

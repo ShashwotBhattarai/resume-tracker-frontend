@@ -50,7 +50,10 @@
 			"global": {
 				"lines": 90
 			}
-		}
+		},
+		"collectCoverageFrom": [
+			"src/services/*.js"
+		]
 	},
 	"devDependencies": {
 		"@babel/core": "^7.23.7",
