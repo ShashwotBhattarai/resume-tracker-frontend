@@ -1,5 +1,5 @@
 import axios from "axios";
-import jwt from "jsonwebtoken";
+import { jwtDecode } from "jwt-decode";
 
 export async function login(formdata) {
 	try {
@@ -9,7 +9,7 @@ export async function login(formdata) {
 			const token = response.data.token;
 			// Store the token in local storage
 			localStorage.setItem("token", token);
-			const decoded = jwt.decode(token);
+			const decoded = jwtDecode(token);
 			const role = decoded.role;
 			return {
 				status: 200,
