@@ -1,6 +1,12 @@
 import { SignUp } from "../services/signUp.service";
-import { signUpFormData } from "../testData/formData";
+
 const fetchMock = require("fetch-mock-jest");
+const signUpFormData = {
+	username: "pujatest",
+	password: "passwordTest",
+	email: "test@gmail.com",
+	role: "candidateTest",
+};
 describe("SignUp", () => {
 	beforeEach(() => {
 		fetchMock.mockReset();
