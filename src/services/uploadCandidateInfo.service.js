@@ -1,7 +1,7 @@
 import axios from "axios";
 export async function uploadCandidateInfo(formData, token) {
 	try {
-		const response = await axios.post("http://localhost:4000/candidate/upload", formData, {
+		const response = await axios.post(`http://localhost:4000/candidate/upload`, formData, {
 			headers: {
 				"Content-Type": "multipart/form-data",
 				Authorization: `Bearer ${token}`,

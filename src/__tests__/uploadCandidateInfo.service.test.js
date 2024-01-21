@@ -1,7 +1,10 @@
 import { uploadCandidateInfo } from "../services/uploadCandidateInfo.service";
-import formData from "../testData/formData";
 import axios from "axios";
 jest.mock("axios");
+const formData = {
+	firstName: "test",
+	email: "test@gmail.com",
+};
 
 describe("Upload candidate info service", () => {
 	test("Upload successful", async () => {

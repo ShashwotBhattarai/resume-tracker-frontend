@@ -1,12 +1,16 @@
 export async function SignUp(formData) {
 	try {
-		const response = await fetch("http://localhost:3000/auth/signup", {
+		const baseURL = process.env.AUTH_MICROSERVICE_URL;
+		console.log("baseURL", baseURL);
+		console.log("formData", formData);
+		const response = await fetch(`http://localhost:3001/auth/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(formData),
 		});
+		console.log("response", response);
 		if (response.status === 201) {
 			return {
 				status: 200,

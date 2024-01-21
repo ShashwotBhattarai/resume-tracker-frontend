@@ -4,7 +4,7 @@ export async function downloadCandidateData(selectedCandidate, authToken) {
 		const awsFileKey = selectedCandidate.aws_file_key;
 
 		const downloadResponse = await axios.post(
-			"http://localhost:3002/recruiter/download",
+			`http://localhost:3002/recruiter/download`,
 			{ key: awsFileKey },
 			{ headers: { Authorization: `Bearer ${authToken}` } }
 		);

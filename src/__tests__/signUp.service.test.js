@@ -3,7 +3,7 @@ import { SignUp } from "../services/signUp.service";
 const fetchMock = require("fetch-mock-jest");
 const signUpFormData = {
 	username: "pujatest",
-	password: "passwordTest",
+	password: process.env.mockPassword,
 	email: "test@gmail.com",
 	role: "candidateTest",
 };
