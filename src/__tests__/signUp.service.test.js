@@ -12,13 +12,13 @@ describe("SignUp", () => {
 		fetchMock.mockReset();
 	});
 	test("SignUp successfull", async () => {
-		fetchMock.post("http://localhost:3000/auth/signup", 201);
+		fetchMock.post("http://localhost:3001/auth/signup", 201);
 		const response = await SignUp(signUpFormData);
 		expect(response.status).toBe(200);
 	});
 
 	test("known error from backend", async () => {
-		fetchMock.post("http://localhost:3000/auth/signup", 400);
+		fetchMock.post("http://localhost:3001/auth/signup", 400);
 		try {
 			await SignUp(signUpFormData);
 		} catch (response) {
@@ -29,7 +29,7 @@ describe("SignUp", () => {
 	});
 
 	test("unknow error", async () => {
-		fetchMock.post("http://localhost:3000/auth/signup", { throws: new Error("fetch failed") });
+		fetchMock.post("http://localhost:3001/auth/signup", { throws: new Error("fetch failed") });
 		try {
 			await SignUp(signUpFormData);
 		} catch (response) {
