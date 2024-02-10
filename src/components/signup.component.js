@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SignUp } from "../services/signUp.service";
 
 const SignUpForm = () => {
 	const [formData, setFormData] = useState({
@@ -24,31 +25,17 @@ const SignUpForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		try {
-			const response = await fetch("http://localhost:3000/auth/signup", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			});
+		const signupResponse = await SignUp(formData);
+		if (signupResponse.status === 200) {
+			// Handle successful signup
+			const successMessage = "User sign up successfull";
+			setMessage(successMessage);
 
-			if (response.ok) {
-				// Handle successful signup
-				const successMessage = "User sign up successfull";
-				console.log(successMessage);
-				setMessage(successMessage);
-
-				setTimeout(() => navigate("/"), 3000);
-			} else {
-				// Handle signup error
-				const errorMessage = "Error signing up user";
-				console.error(errorMessage);
-				setMessage(errorMessage);
-			}
-		} catch (error) {
-			console.error("Error:", error);
-			setMessage("An error occurred while signing up");
+			setTimeout(() => navigate("/"), 3000);
+		} else {
+			// Handle signup error
+			const errorMessage = "Error signing up user";
+			setMessage(errorMessage);
 		}
 	};
 
@@ -56,8 +43,8 @@ const SignUpForm = () => {
 		<div>
 			<form onSubmit={handleSubmit}>
 				<label>
-					Username:
-					<input
+					Username:{/*
+					*/}<input
 						type="text"
 						name="username"
 						value={formData.username}
@@ -68,7 +55,8 @@ const SignUpForm = () => {
 				<br />
 
 				<label>
-					Password:
+					Password:{/*
+					*/}
 					<input
 						type="password"
 						name="password"
@@ -80,7 +68,8 @@ const SignUpForm = () => {
 				<br />
 
 				<label>
-					Email:
+					Email:{/*
+					*/}
 					<input
 						type="email"
 						name="email"
@@ -92,7 +81,8 @@ const SignUpForm = () => {
 				<br />
 
 				<label>
-					Role:
+					Role:{/*
+					*/}
 					<select name="role" value={formData.role} onChange={handleChange} required>
 						<option value="">Select Role</option>
 						<option value="candidate">Candidate</option>

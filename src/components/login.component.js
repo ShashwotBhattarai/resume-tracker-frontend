@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
 
+import { useNavigate } from "react-router-dom";
+import { login } from "../services/login.service";
 const LoginForm = () => {
 	const [formData, setFormData] = useState({
 		username: "",
@@ -21,50 +20,27 @@ const LoginForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
-		try {
-			const response = await axios.post("http://localhost:3000/auth/login", formData);
-
-			if (response.status === 200) {
-				const { token } = response.data.message;
-
-				// Store the token in local storage
-				localStorage.setItem("token", token);
-
-				const decoded = await jwtDecode(token);
-				const role = decoded.role;
-
-				// Handle successful login
-				console.log("User logged in successfully");
-
-				// Check if the role is "candidate" and navigate to the upload component
-				if (role === "candidate") {
-					navigate("/upload"); // Redirect to the upload component
-				} else if (role === "recruiter") {
-					navigate("/download");
-					// Handle other roles or redirect to a different route if needed
-				}
-
-				// Redirect or perform any other actions after successful login
-			} else {
-				// Handle login error
-				console.error("Error logging in");
-			}
-		} catch (error) {
-			console.error("Error:", error);
+		const response = await login(formData);
+		const { role } = response.data;
+		if (role === "candidate") {
+			navigate("/upload"); // Redirect to the upload component
+		} else if (role === "recruiter") {
+			navigate("/download");
 		}
 	};
 
 	return (
 		<form onSubmit={handleSubmit}>
 			<label>
-				Username:
+				Username:{/*
+					*/}
 				<input type="text" name="username" value={formData.username} onChange={handleChange} required />
 			</label>
 			<br />
 
 			<label>
-				Password:
+				Password:{/*
+					*/}
 				<input
 					type="password"
 					name="password"
