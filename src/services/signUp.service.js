@@ -1,8 +1,6 @@
 export async function SignUp(formData) {
 	try {
-		const baseURL = process.env.AUTH_MICROSERVICE_URL;
-		console.log("baseURL", baseURL);
-		console.log("formData", formData);
+
 		const response = await fetch(`http://localhost:3001/auth/signup`, {
 			method: "POST",
 			headers: {

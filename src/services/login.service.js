@@ -3,12 +3,7 @@ import { jwtDecode } from "jwt-decode";
 
 export async function login(formdata) {
 	try {
-		console.log("formdata", formdata);
-		console.log("process.env.AUTH_MICROSERVICE_URL", process.env.authUrl);
-		const response = await axios.post(`http://localhost:3001/auth/login`, formdata);
-
-		console.log("response", response);
-
+		response = await axios.post(`http://localhost:3001/auth/login`, formdata);
 		if (response.status === 200) {
 			const token = response.data.token;
 			// Store the token in local storage
