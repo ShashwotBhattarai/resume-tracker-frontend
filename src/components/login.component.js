@@ -32,13 +32,15 @@ const LoginForm = () => {
 	return (
 		<form onSubmit={handleSubmit}>
 			<label>
-				Username:
+				Username:{/*
+					*/}
 				<input type="text" name="username" value={formData.username} onChange={handleChange} required />
 			</label>
 			<br />
 
 			<label>
-				Password:
+				Password:{/*
+					*/}
 				<input
 					type="password"
 					name="password"

@@ -74,7 +74,8 @@ const Upload = () => {
 		<>
 			<form onSubmit={handleSubmit}>
 				<label>
-					Full Name:
+					Full Name:{/*
+					*/}
 					<input
 						type="text"
 						name="fullname"
@@ -86,7 +87,8 @@ const Upload = () => {
 				<br />
 
 				<label>
-					Email:
+					Email:{/*
+					*/}
 					<input
 						type="email"
 						name="email"
@@ -98,7 +100,8 @@ const Upload = () => {
 				<br />
 
 				<label>
-					Phone Number:
+					Phone Number:{/*
+					*/}
 					<input
 						type="text"
 						name="phoneNumber"
@@ -110,7 +113,8 @@ const Upload = () => {
 				<br />
 
 				<label>
-					CV:
+					CV:{/*
+					*/}
 					<input type="file" name="cv" onChange={handleInputChangeForCV} />
 				</label>
 

@@ -43,8 +43,8 @@ const SignUpForm = () => {
 		<div>
 			<form onSubmit={handleSubmit}>
 				<label>
-					Username:
-					<input
+					Username:{/*
+					*/}<input
 						type="text"
 						name="username"
 						value={formData.username}
@@ -55,7 +55,8 @@ const SignUpForm = () => {
 				<br />
 
 				<label>
-					Password:
+					Password:{/*
+					*/}
 					<input
 						type="password"
 						name="password"
@@ -67,7 +68,8 @@ const SignUpForm = () => {
 				<br />
 
 				<label>
-					Email:
+					Email:{/*
+					*/}
 					<input
 						type="email"
 						name="email"
@@ -79,7 +81,8 @@ const SignUpForm = () => {
 				<br />
 
 				<label>
-					Role:
+					Role:{/*
+					*/}
 					<select name="role" value={formData.role} onChange={handleChange} required>
 						<option value="">Select Role</option>
 						<option value="candidate">Candidate</option>
