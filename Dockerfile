@@ -5,8 +5,8 @@ COPY package*.json ./
 
 RUN npm install --ignore-scripts
 
-# RUN addgroup --system nonroot && adduser --system --group nonroot
-# USER nonroot
+RUN addgroup --system nonroot && adduser --system --group nonroot
+USER nonroot
 
 COPY ./src /usr/src/app/src
 COPY ./public /usr/src/app/public

@@ -3,7 +3,14 @@ import { jwtDecode } from "jwt-decode";
 
 export async function login(formdata) {
 	try {
-		const response = await axios.post(`http://localhost:3001/auth/login`, formdata);
+		console.log(formdata)
+		const config = {
+			headers: {
+				username: formdata.username,
+				password: formdata.password,
+			}
+		  };
+		const response = await axios.post(`http://localhost:3001/auth/login`,{},config);
 		if (response.status === 200) {
 			const token = response.data.token;
 			// Store the token in local storage
