@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/login.service";
+import {toast} from "react-toastify"
 const LoginForm = () => {
 	const [formData, setFormData] = useState({
 		username: "",
@@ -21,6 +22,10 @@ const LoginForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const response = await login(formData);
+		if (response.status===500){
+			toast.error("login failed please try again");
+			return
+		}
 		const { role } = response.data;
 		if (role === "candidate") {
 			navigate("/upload"); // Redirect to the upload component
@@ -30,6 +35,7 @@ const LoginForm = () => {
 	};
 
 	return (
+		<div>
 		<form onSubmit={handleSubmit}>
 			<label>
 				Username:{/*
@@ -53,6 +59,7 @@ const LoginForm = () => {
 
 			<button type="submit">Login</button>
 		</form>
+		</div>
 	);
 };
 
