@@ -63,6 +63,8 @@ const SignUpForm = () => {
 						value={formData.password}
 						onChange={handleChange}
 						required
+						minLength="8"
+						maxLength="16"
 					/>
 				</label>
 				<br />
