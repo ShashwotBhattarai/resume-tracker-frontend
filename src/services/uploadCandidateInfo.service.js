@@ -18,9 +18,13 @@ export async function uploadCandidateInfo(formData, token) {
         message: "Candidate info uploaded successfully",
       };
     } else {
-      throw new Error("Error in uploading candidate info");
+      return {
+        status: 500,
+      };
     }
   } catch (error) {
-    throw new Error("unknown error in uploadCandidateInfo service");
+    return {
+      status: 500,
+    };
   }
 }

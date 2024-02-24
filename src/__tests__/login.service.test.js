@@ -1,7 +1,7 @@
 import { login } from "../services/login.service";
 import axios from "axios";
-jest.mock("axios");
 import * as jwtdecodeModule from "jwt-decode";
+jest.mock("axios");
 const loginFormData = {
   username: "pujatest",
   password: process.env.mockPassword,
@@ -26,6 +26,7 @@ describe("Login Service", () => {
     try {
       await login(loginFormData);
     } catch (error) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toEqual(new Error("unknown error in login service"));
     }
   });

@@ -21,6 +21,7 @@ describe("Download candidate service", () => {
     try {
       await downloadCandidateData("mocktoken");
     } catch (error) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toEqual(
         new Error("unknown error in downloadCandidateData service"),
       );
