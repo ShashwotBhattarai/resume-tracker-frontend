@@ -1,71 +1,75 @@
 {
-	"name": "resume-tracker-frontend",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"@testing-library/jest-dom": "^5.17.0",
-		"@testing-library/react": "^13.4.0",
-		"@testing-library/user-event": "^13.5.0",
-		"axios": "^1.6.2",
-		"buffer": "^6.0.3",
-		"crypto-browserify": "^3.12.0",
-		"dotenv": "^16.3.2",
-		"jest-fetch-mock": "^3.0.3",
-		"jsonwebtoken": "^9.0.2",
-		"jwt-decode": "^4.0.0",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-router": "^6.20.0",
-		"react-router-dom": "^6.20.0",
-		"react-scripts": "5.0.1",
-		"react-toastify": "^10.0.4",
-		"stream-browserify": "^3.0.0",
-		"util": "^0.12.5",
-		"web-vitals": "^2.1.4"
-	},
-	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test --watchAll --coverage",
-		"eject": "react-scripts eject"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
-	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	},
-	"jest": {
-		"coverageThreshold": {
-			"global": {
-				"lines": 90
-			}
-		},
-		"collectCoverageFrom": [
-			"src/services/*.js"
-		]
-	},
-	"devDependencies": {
-		"@babel/core": "^7.23.7",
-		"@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-		"@babel/preset-env": "^7.23.7",
-		"@types/jest": "^29.5.10",
-		"babel-jest": "^29.7.0",
-		"fetch-mock": "^9.11.0",
-		"fetch-mock-jest": "^1.5.1",
-		"jest": "^27.5.1",
-		"jest-mock-axios": "^4.7.3"
-	}
+  "name": "resume-tracker-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.2",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.0",
+    "dotenv": "^16.3.2",
+    "jest-fetch-mock": "^3.0.3",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router": "^6.20.0",
+    "react-router-dom": "^6.20.0",
+    "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.4",
+    "stream-browserify": "^3.0.0",
+    "util": "^0.12.5",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll --coverage",
+    "eject": "react-scripts eject",
+    "prepare": "husky",
+    "prettier": "npx prettier . --write"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "lines": 90
+      }
+    },
+    "collectCoverageFrom": [
+      "src/services/*.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/preset-env": "^7.23.7",
+    "@types/jest": "^29.5.10",
+    "babel-jest": "^29.7.0",
+    "fetch-mock": "^9.11.0",
+    "fetch-mock-jest": "^1.5.1",
+    "husky": "^9.0.11",
+    "jest": "^27.5.1",
+    "jest-mock-axios": "^4.7.3",
+    "prettier": "3.2.5"
+  }
 }
