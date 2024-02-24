@@ -1,6 +1,7 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 
+
 export async function login(formdata) {
 	try {
 		console.log(formdata)
@@ -23,9 +24,13 @@ export async function login(formdata) {
 				data: { role: role },
 			};
 		} else {
-			throw new Error("login failed");
+			return {
+				status:500
+			}
 		}
 	} catch (error) {
-		throw new Error("unknown error in login service");
+		return {
+			status:500
+		}
 	}
 }
