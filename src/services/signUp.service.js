@@ -1,12 +1,14 @@
 export async function SignUp(formData) {
 	try {
-
+		console.log("formdata", formData);
 		const response = await fetch(`http://localhost:3001/auth/signup`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
+				username: formData.username,
+				password: formData.password,
 			},
-			body: JSON.stringify(formData),
+			body: JSON.stringify({ email: formData.email, role: formData.role }),
 		});
 		console.log("response", response);
 		if (response.status === 201) {
@@ -24,7 +26,9 @@ export async function SignUp(formData) {
 			throw err;
 		}
 	} catch (error) {
-		const err = new Error("Unknown error in SignUp.Please see inisde data for more details");
+		const err = new Error(
+			"Unknown error in SignUp.Please see inisde data for more details"
+		);
 		err.status = 500;
 		err.data = error;
 
