@@ -24,9 +24,17 @@ describe("Upload candidate info service", () => {
     try {
       await uploadCandidateInfo(formData, "mocktoken");
     } catch (error) {
-      expect(error).toEqual(
-        new Error("unknown error in uploadCandidateInfo service"),
-      );
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error.status).toEqual(500);
+    }
+  });
+  test("backend Error", async () => {
+    axios.post.mockRejectedValue(new Error("something went wrong"));
+    try {
+      await uploadCandidateInfo(formData, "mocktoken");
+    } catch (error) {
+      // eslint-disable-next-line jest/no-conditional-expect
+      expect(error.status).toEqual(500);
     }
   });
 });

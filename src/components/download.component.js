@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { downloadCandidateData } from "../services/downloadCandidateCV.service";
 import { fetchCandidateData } from "../services/fetchCandidateData.service";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DownloadComponent = () => {
   const [candidates, setCandidates] = useState([]);
@@ -22,13 +23,18 @@ const DownloadComponent = () => {
     const selectedCandidate = candidates.find(
       (candidate) => candidate.user_id === user_id,
     );
-    const downloadResponse = await downloadCandidateData(
-      selectedCandidate,
-      authToken,
-    );
-    const downloadUrl = downloadResponse.data;
 
-    window.open(downloadUrl, "_blank");
+    try {
+      const downloadResponse = await downloadCandidateData(
+        selectedCandidate,
+        authToken,
+      );
+      const downloadUrl = downloadResponse.data;
+
+      window.open(downloadUrl, "_blank");
+    } catch {
+      toast.error("Download failed please try again after some time");
+    }
   };
 
   const handleLogout = () => {

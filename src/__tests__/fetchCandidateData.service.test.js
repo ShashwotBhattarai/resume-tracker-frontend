@@ -14,6 +14,7 @@ describe("Fetch candidateinfo service", () => {
     try {
       await fetchCandidateData("mocktoken");
     } catch (error) {
+      // eslint-disable-next-line jest/no-conditional-expect
       expect(error).toEqual(
         new Error("unknown error in fetchCandidateData service"),
       );

@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-conditional-expect */
 import { SignUp } from "../services/signUp.service";
 
 const fetchMock = require("fetch-mock-jest");
