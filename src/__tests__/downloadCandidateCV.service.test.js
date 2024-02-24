@@ -3,18 +3,27 @@ import axios from "axios";
 jest.mock("axios");
 
 describe("Download candidate service", () => {
-	test("Download successfull", async () => {
-		axios.post.mockResolvedValue({ status: 200, message: "download successfull", data: { url: "some url" } });
-		const response = await downloadCandidateData("mocktoken");
-		expect(response.status).toBe(200);
-		expect(response.message).toBe("Candidate data downloaded successfully");
-	});
-	test("Error", async () => {
-		axios.get.mockResolvedValue({ status: 500, data: { message: "some error" } });
-		try {
-			await downloadCandidateData("mocktoken");
-		} catch (error) {
-			expect(error).toEqual(new Error("unknown error in downloadCandidateData service"));
-		}
-	});
+  test("Download successfull", async () => {
+    axios.post.mockResolvedValue({
+      status: 200,
+      message: "download successfull",
+      data: { url: "some url" },
+    });
+    const response = await downloadCandidateData("mocktoken");
+    expect(response.status).toBe(200);
+    expect(response.message).toBe("Candidate data downloaded successfully");
+  });
+  test("Error", async () => {
+    axios.get.mockResolvedValue({
+      status: 500,
+      data: { message: "some error" },
+    });
+    try {
+      await downloadCandidateData("mocktoken");
+    } catch (error) {
+      expect(error).toEqual(
+        new Error("unknown error in downloadCandidateData service"),
+      );
+    }
+  });
 });

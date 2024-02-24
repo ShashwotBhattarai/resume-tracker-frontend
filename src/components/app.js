@@ -6,17 +6,17 @@ import LoginForm from "./login.component";
 import UploadComponent from "./upload.component";
 import DownloadComponent from "./download.component";
 const App = () => {
-	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/signup" element={<SignUpForm />} />
-				<Route path="/login" element={<LoginForm />} />
-				<Route path="/upload" element={<UploadComponent />} />
-				<Route path="/download" element={<DownloadComponent />} />
-			</Routes>
-		</BrowserRouter>
-	);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<SignUpForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/upload" element={<UploadComponent />} />
+        <Route path="/download" element={<DownloadComponent />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
 
 export default App;
