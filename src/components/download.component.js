@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { downloadCandidateData } from "../services/downloadCandidateCV.service";
 import { fetchCandidateData } from "../services/fetchCandidateData.service";
+import { useNavigate } from "react-router-dom";
 
 const DownloadComponent = () => {
 	const [candidates, setCandidates] = useState([]);
 	const authToken = localStorage.getItem("token");
+	const navigate = useNavigate();
 
 	async function callfetchCandidateData(authToken) {
 		const response = await fetchCandidateData(authToken);
@@ -22,6 +24,14 @@ const DownloadComponent = () => {
 		const downloadUrl = downloadResponse.data;
 
 		window.open(downloadUrl, "_blank");
+	};
+
+	const handleLogout = () => {
+		// Clear the token from local storage
+		localStorage.removeItem("token");
+
+		// Redirect to the home component
+		navigate("/");
 	};
 
 	return (
@@ -51,6 +61,9 @@ const DownloadComponent = () => {
 					))}
 				</tbody>
 			</table>
+			<button className="logout-button" onClick={handleLogout}>
+				Logout
+			</button>
 		</div>
 	);
 };
