@@ -81,6 +81,8 @@ const Upload = () => {
 						name="fullname"
 						value={formData.fullname}
 						onChange={handleInputChangeForFullName}
+						required
+						minLength="3"
 					/>
 				</label>
 
@@ -94,6 +96,7 @@ const Upload = () => {
 						name="email"
 						value={formData.email}
 						onChange={handleInputChangeForEmail}
+						required
 					/>
 				</label>
 
@@ -107,6 +110,9 @@ const Upload = () => {
 						name="phoneNumber"
 						value={formData.phone_number}
 						onChange={handleInputChangeForPhoneNumber}
+						required
+						minLength="10"
+						maxLength="14"
 					/>
 				</label>
 
@@ -115,7 +121,7 @@ const Upload = () => {
 				<label>
 					CV:{/*
 					*/}
-					<input type="file" name="cv" onChange={handleInputChangeForCV} />
+					<input type="file" name="cv" onChange={handleInputChangeForCV } required size={100}/>
 				</label>
 
 				<br />
