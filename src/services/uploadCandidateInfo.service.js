@@ -1,18 +1,32 @@
 import axios from "axios";
 export async function uploadCandidateInfo(formData, token) {
   try {
-    const response = await axios.post(
-      `http://localhost:4000/upload`,
-      formData,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
-        },
-      },
-    );
+    const key = Date.now() + "_" + formData.cv.name;
+    const urlResponse = await axios.get("http://localhost:4000/uploadURL", {
+      headers: { Authorization: `Bearer ${token}`, key: key },
+    });
 
-    if (response.status === 200) {
+    const url = urlResponse.data.url;
+
+    const s3uploadResponse = await axios.put(url, formData.cv, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    const data = {
+      fullname: formData.fullname,
+      email: formData.email,
+      phone_number: formData.phone_number,
+    };
+    const response = await axios.post(`http://localhost:4000/upload`, data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        newkey: key,
+      },
+    });
+
+    if (s3uploadResponse.status === 200 && response.status === 200) {
       return {
         status: 200,
         message: "Candidate info uploaded successfully",
