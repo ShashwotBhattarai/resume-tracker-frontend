@@ -46,6 +46,8 @@ const LoginForm = () => {
             name="username"
             value={formData.username}
             onChange={handleChange}
+            pattern="[A-Za-z]+"
+            title="Username must contain only letters."
             required
           />
         </label>
