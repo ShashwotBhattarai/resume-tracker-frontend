@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./upload.css";
 import { useNavigate } from "react-router-dom";
 import { uploadCandidateInfo } from "../services/uploadCandidateInfo.service";
 
@@ -45,7 +44,6 @@ const Upload = () => {
 
       setMessage(successMessage);
 
-      // Clear form data after successful submission
       setFormData({
         fullname: "",
         email: "",
@@ -63,89 +61,117 @@ const Upload = () => {
   };
 
   const handleLogout = () => {
-    // Clear the token from local storage
     localStorage.removeItem("token");
 
-    // Redirect to the home component
     navigate("/");
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Full Name:
-          {/*
-           */}
-          <input
-            type="text"
-            name="fullname"
-            value={formData.fullname}
-            onChange={handleInputChangeForFullName}
-            required
-            minLength="3"
-          />
-        </label>
-
-        <br />
-
-        <label>
-          Email:
-          {/*
-           */}
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChangeForEmail}
-            required
-          />
-        </label>
-
-        <br />
-
-        <label>
-          Phone Number:
-          {/*
-           */}
-          <input
-            type="text"
-            name="phoneNumber"
-            value={formData.phone_number}
-            onChange={handleInputChangeForPhoneNumber}
-            required
-            minLength="10"
-            maxLength="14"
-          />
-        </label>
-
-        <br />
-
-        <label>
-          CV:
-          {/*
-           */}
-          <input
-            type="file"
-            name="cv"
-            onChange={handleInputChangeForCV}
-            required
-            size={100}
-          />
-        </label>
-
-        <br />
-
-        <button type="submit" disabled={loading}>
-          {loading ? "Submitting..." : "Submit"}
+    <div className="flex flex-col min-h-screen bg-gray-100">
+      <div className="p-4 text-right">
+        <button
+          onClick={handleLogout}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        >
+          Logout
         </button>
+      </div>
 
-        {message && <p>{message}</p>}
-      </form>
-      <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
-    </>
+      <div className="flex-grow flex items-center justify-center p-4">
+        <form onSubmit={handleSubmit} className="w-full max-w-md">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="fullname"
+              >
+                Full Name
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="fullname"
+                type="text"
+                name="fullname"
+                value={formData.fullname}
+                onChange={handleInputChangeForFullName}
+                required
+                minLength="3"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChangeForEmail}
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="phoneNumber"
+              >
+                Phone Number
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="phoneNumber"
+                type="text"
+                name="phoneNumber"
+                value={formData.phone_number}
+                onChange={handleInputChangeForPhoneNumber}
+                required
+                minLength="10"
+                maxLength="14"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="cv"
+              >
+                CV
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="cv"
+                type="file"
+                name="cv"
+                onChange={handleInputChangeForCV}
+                required
+                size={100}
+              />
+            </div>
+
+            <div className="flex justify-start">
+              <button
+                type="submit"
+                disabled={loading}
+                className={`bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+              >
+                {loading ? "Submitting..." : "Submit"}
+              </button>
+            </div>
+
+            {message && (
+              <p className="text-center mt-4 text-red-500">{message}</p>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

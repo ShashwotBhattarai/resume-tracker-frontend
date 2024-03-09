@@ -5,6 +5,8 @@ import SignUpForm from "./signup.component";
 import LoginForm from "./login.component";
 import UploadComponent from "./upload.component";
 import DownloadComponent from "./download.component";
+import "../index.css";
+
 const App = () => {
   return (
     <BrowserRouter>

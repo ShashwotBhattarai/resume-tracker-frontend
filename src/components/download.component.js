@@ -13,6 +13,7 @@ const DownloadComponent = () => {
     const response = await fetchCandidateData(authToken);
     return response.data;
   }
+
   useEffect(() => {
     callfetchCandidateData(authToken).then((data) => {
       setCandidates(data);
@@ -30,7 +31,6 @@ const DownloadComponent = () => {
         authToken,
       );
       const downloadUrl = downloadResponse.data;
-
       window.open(downloadUrl, "_blank");
     } catch {
       toast.error("Download failed please try again after some time");
@@ -38,47 +38,69 @@ const DownloadComponent = () => {
   };
 
   const handleLogout = () => {
-    // Clear the token from local storage
     localStorage.removeItem("token");
-
-    // Redirect to the home component
     navigate("/");
   };
 
   return (
-    <div>
-      <h2>Candidate Information</h2>
-      <table>
-        <thead>
-          <tr>
-            <th
-              style={{ fontWeight: "bold", fontSize: "1.2em", padding: "10px" }}
-            >
-              S.N
-            </th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {candidates.map((candidate, index) => (
-            <tr key={candidate.user_id}>
-              <td>{index + 1}</td>
-              <td>{candidate.fullname}</td>
-              <td>{candidate.email}</td>
-              <td>
-                <button onClick={() => handleDownload(candidate.user_id)}>
-                  Download
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <button className="logout-button" onClick={handleLogout}>
-        Logout
-      </button>
+    <div className="container mx-auto p-4">
+      <div className="flex flex-col min-h-screen">
+        <div className="flex justify-between items-center">
+          <h2 className="text-2xl font-bold text-gray-900">
+            Candidate Information
+          </h2>
+          <button
+            onClick={handleLogout}
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline self-start mt-4"
+          >
+            Logout
+          </button>
+        </div>
+
+        <div className="overflow-x-auto mt-6">
+          <table className="min-w-full bg-white">
+            <thead className="bg-gray-200 text-gray-900">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  S.N
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Name
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Email
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-gray-900">
+              {candidates.map((candidate, index) => (
+                <tr key={candidate.user_id} className="border-b">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    {index + 1}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {candidate.fullname}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {candidate.email}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button
+                      onClick={() => handleDownload(candidate.user_id)}
+                      className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded focus:outline-none focus:shadow-outline"
+                    >
+                      Download
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 };
