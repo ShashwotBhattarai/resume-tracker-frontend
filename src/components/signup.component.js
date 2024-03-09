@@ -70,6 +70,8 @@ const SignUpForm = () => {
             required
             minLength="8"
             maxLength="16"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,16}"
+            title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
           />
         </label>
         <br />
