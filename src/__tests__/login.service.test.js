@@ -8,10 +8,6 @@ const loginFormData = {
 };
 describe("Login Service", () => {
   test("Login successful", async () => {
-    console.log(
-      "process.env.AUTH_MICROSERVICE_URL",
-      process.env.AUTH_MICROSERVICE_URL,
-    );
     axios.post.mockResolvedValue({ status: 200, data: { token: "tokenTest" } });
     const jwtdecodeSpy = jest.spyOn(jwtdecodeModule, "jwtDecode");
     jwtdecodeSpy.mockResolvedValue({ role: "admin" });

@@ -3,7 +3,6 @@ import { jwtDecode } from "jwt-decode";
 
 export async function login(formdata) {
   try {
-    console.log(formdata);
     const config = {
       headers: {
         username: formdata.username,

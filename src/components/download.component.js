@@ -13,7 +13,6 @@ const DownloadComponent = () => {
     const response = await fetchCandidateData(authToken);
     return response.data;
   }
-
   useEffect(() => {
     callfetchCandidateData(authToken).then((data) => {
       setCandidates(data);
