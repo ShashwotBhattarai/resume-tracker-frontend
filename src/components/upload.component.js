@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadCandidateInfo } from "../services/uploadCandidateInfo.service";
+import Spinner from "./loader.component";
 
 const Upload = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Upload = () => {
   const accessToken = localStorage.getItem("token");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(null);
 
   const navigate = useNavigate();
 
@@ -34,15 +36,13 @@ const Upload = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const successMessage = "Might take few seconds to process it";
-    setMessage(successMessage);
     const response = await uploadCandidateInfo(formData, accessToken);
-
     if (response.status === 200) {
       setLoading(false);
       const successMessage = "User details uploaded successfully";
 
       setMessage(successMessage);
+      setSuccess(true);
 
       setFormData({
         fullname: "",
@@ -57,6 +57,7 @@ const Upload = () => {
       setLoading(false);
       const errorMessage = "Something went wrong, Please try again";
       setMessage(errorMessage);
+      setSuccess(false);
     }
   };
 
@@ -165,8 +166,14 @@ const Upload = () => {
               </button>
             </div>
 
+            {loading && <Spinner />}
+
             {message && (
-              <p className="text-center mt-4 text-red-500">{message}</p>
+              <p
+                className={`mt-4 px-4 py-2 rounded ${success ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+              >
+                {message}
+              </p>
             )}
           </div>
         </form>

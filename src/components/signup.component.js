@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SignUp } from "../services/signUp.service";
 import Spinner from "./loader.component";
+import InputField from "./inputField.component";
 
 const SignUpForm = () => {
   const [formData, setFormData] = useState({
@@ -51,65 +52,38 @@ const SignUpForm = () => {
           onSubmit={handleSubmit}
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         >
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="username"
-            >
-              Username
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
-              type="text"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              pattern="[A-Za-z]+"
-              title="Username must contain only letters."
-              required
-            />
-          </div>
+          <InputField
+            id="username"
+            name="username"
+            type="text"
+            value={formData.username}
+            onChange={handleChange}
+            pattern="[A-Za-z]+"
+            title="Username must contain only letters."
+            required
+          />
 
-          <div className="mb-6">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="password"
-            >
-              Password
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              minLength="8"
-              maxLength="16"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,16}"
-              title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
-            />
-          </div>
+          <InputField
+            id="password"
+            name="password"
+            type="password"
+            value={formData.password}
+            onChange={handleChange}
+            minLength="8"
+            maxLength="16"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}"
+            title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, and one number."
+            required
+          />
 
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
-            >
-              Email
-            </label>
-            <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <InputField
+            id="email"
+            name="email"
+            type="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
           <div className="mb-6">
             <label
@@ -140,15 +114,15 @@ const SignUpForm = () => {
               Sign Up
             </button>
           </div>
+          {loading && <Spinner />}
+          {message && (
+            <p
+              className={`mt-4 px-4 py-2 rounded ${success ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+            >
+              {message}
+            </p>
+          )}
         </form>
-        {loading && <Spinner />}
-        {message && (
-          <p
-            className={`mt-4 px-4 py-2 rounded ${success ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
-          >
-            {message}
-          </p>
-        )}
       </div>
     </div>
   );
