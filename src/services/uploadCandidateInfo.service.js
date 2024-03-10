@@ -2,7 +2,6 @@ import axios from "axios";
 export async function uploadCandidateInfo(formData, token) {
   try {
     if (formData.cv !== null) {
-      console.log("inside if");
       const key = Date.now() + "_" + formData.cv.name;
       const urlResponse = await axios.get("http://localhost:4000/uploadURL", {
         headers: { Authorization: `Bearer ${token}`, key: key },

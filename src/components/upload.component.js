@@ -30,8 +30,6 @@ const Upload = () => {
         cv: null,
       });
       setUrl(res.data.url);
-
-      console.log("url", url);
     }
   }
 
@@ -59,10 +57,8 @@ const Upload = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("handle submit triggered");
     e.preventDefault();
     setLoading(true);
-    console.log("formData in componenet before hiting service", formData);
     const response = await uploadCandidateInfo(formData, accessToken);
     if (response.status === 200) {
       setFormData({
@@ -72,8 +68,6 @@ const Upload = () => {
         cv: null,
       });
       setKey(Date.now());
-
-      console.log("value of cv after hitting service", formData.cv);
       setLoading(false);
       const successMessage = "User details uploaded successfully";
 
