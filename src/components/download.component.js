@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { downloadCandidateData } from "../services/downloadCandidateCV.service";
-import { fetchCandidateData } from "../services/fetchCandidateData.service";
+import { fetchAllCandidateData } from "../services/fetchCandidateData.service";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -10,7 +10,7 @@ const DownloadComponent = () => {
   const navigate = useNavigate();
 
   async function callfetchCandidateData(authToken) {
-    const response = await fetchCandidateData(authToken);
+    const response = await fetchAllCandidateData(authToken);
     return response.data;
   }
   useEffect(() => {
