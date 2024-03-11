@@ -15,9 +15,8 @@ const Upload = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
-  // const [url, setUrl] = useState("");
+  const [url, setUrl] = useState("");
   const [key, setKey] = useState(Date.now());
-  // const [triggerPreview, setTriggerPreview] = useState(false);
 
   const urlRef = useRef("");
 
@@ -32,6 +31,7 @@ const Upload = () => {
         phone_number: res.data.candidates.phone_number,
         cv: null,
       });
+      setUrl(res.data.url);
       urlRef.current = res.data.url;
     }
   }
@@ -188,12 +188,12 @@ const Upload = () => {
                 size={100}
               />
               <div className="flex justify-end">
-                {urlRef.current && (
+                {url && (
                   <button
                     type="button"
                     onClick={previewCV}
                     disabled={loading}
-                    className={`bg-blue-500 hover:bg-blue-700 text-white py-0 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+                    className={`bg-blue-500 hover:bg-blue-700 text-white mt-1 py-0 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
                     Preview Existing CV
                   </button>
