@@ -188,7 +188,7 @@ const Upload = () => {
                 size={100}
               />
               <div className="flex justify-end">
-                {urlRef && (
+                {urlRef.current && (
                   <button
                     type="button"
                     onClick={previewCV}
