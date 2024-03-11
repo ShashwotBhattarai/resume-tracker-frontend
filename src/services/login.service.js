@@ -1,5 +1,6 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { ROUTES } from "../config/routes/constants";
 
 export async function login(formdata) {
   try {
@@ -10,7 +11,7 @@ export async function login(formdata) {
       },
     };
     const response = await axios.post(
-      `http://localhost:3001/auth/login`,
+      `${ROUTES.AUTH_MICROSERVICE_URL}/auth/login`,
       {},
       config,
     );

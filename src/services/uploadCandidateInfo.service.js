@@ -1,11 +1,15 @@
 import axios from "axios";
+import { ROUTES } from "../config/routes/constants";
 export async function uploadCandidateInfo(formData, token) {
   try {
     if (formData.cv !== null) {
       const key = Date.now() + "_" + formData.cv.name;
-      const urlResponse = await axios.get("http://localhost:4000/uploadURL", {
-        headers: { Authorization: `Bearer ${token}`, key: key },
-      });
+      const urlResponse = await axios.get(
+        `${ROUTES.CANDIDATE_MICROSERVICE_URL}/uploadURL`,
+        {
+          headers: { Authorization: `Bearer ${token}`, key: key },
+        },
+      );
 
       const url = urlResponse.data.url;
 

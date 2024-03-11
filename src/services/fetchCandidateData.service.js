@@ -1,9 +1,10 @@
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
+import { ROUTES } from "../config/routes/constants";
 export async function fetchAllCandidateData(authToken) {
   try {
     const response = await axios.get(
-      `http://localhost:3002/recruiter/getCandidateInfo/all`,
+      `${ROUTES.RECRUITER_MICROSERVICE_URL}/recruiter/getCandidateInfo/all`,
       {
         headers: { Authorization: `Bearer ${authToken}` },
       },
@@ -24,7 +25,7 @@ export async function fetchOneCandidateData(authToken) {
     const decoded = jwtDecode(authToken);
     const user_id = decoded.user_id;
     const response = await axios.get(
-      `http://localhost:4000/getCandidateInfo/${user_id}`,
+      `${ROUTES.CANDIDATE_MICROSERVICE_URL}/getCandidateInfo/${user_id}`,
       {
         headers: { Authorization: `Bearer ${authToken}` },
       },

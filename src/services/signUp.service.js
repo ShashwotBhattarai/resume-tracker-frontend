@@ -1,14 +1,18 @@
+import { ROUTES } from "../config/routes/constants";
 export async function SignUp(formData) {
   try {
-    const response = await fetch(`http://localhost:3001/auth/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        username: formData.username,
-        password: formData.password,
+    const response = await fetch(
+      `${ROUTES.AUTH_MICROSERVICE_URL}/auth/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          username: formData.username,
+          password: formData.password,
+        },
+        body: JSON.stringify({ email: formData.email, role: formData.role }),
       },
-      body: JSON.stringify({ email: formData.email, role: formData.role }),
-    });
+    );
     if (response.status === 201) {
       return {
         status: 200,
