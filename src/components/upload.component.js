@@ -31,14 +31,15 @@ const Upload = () => {
         cv: null,
       });
       setUrl(res.data.url);
-      if (triggerPreview) {
-        setTriggerPreview(false); // Reset the trigger to prevent multiple previews
-      }
+      // if (triggerPreview) {
+      //   setTriggerPreview(false); // Reset the trigger to prevent multiple previews
+      // }
     }
   }
   function previewCV() {
+    fetchUserData();
     setTriggerPreview(true); // Set the trigger to true to indicate a preview request
-    fetchUserData(); // This will eventually update the URL
+    // This will eventually update the URL
   }
 
   useEffect(() => {
