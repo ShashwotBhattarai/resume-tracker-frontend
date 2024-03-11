@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadCandidateInfo } from "../services/uploadCandidateInfo.service";
 import Spinner from "./loader.component";
@@ -15,8 +15,11 @@ const Upload = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
-  const [url, setUrl] = useState("");
+  // const [url, setUrl] = useState("");
   const [key, setKey] = useState(Date.now());
+  // const [triggerPreview, setTriggerPreview] = useState(false);
+
+  const urlRef = useRef("");
 
   const navigate = useNavigate();
 
@@ -29,8 +32,15 @@ const Upload = () => {
         phone_number: res.data.candidates.phone_number,
         cv: null,
       });
-      setUrl(res.data.url);
+      urlRef.current = res.data.url;
     }
+  }
+  function previewCV() {
+    fetchUserData().then(() => {
+      if (urlRef.current) {
+        window.open(urlRef.current, "_blank");
+      }
+    });
   }
 
   useEffect(() => {
@@ -178,10 +188,10 @@ const Upload = () => {
                 size={100}
               />
               <div className="flex justify-end">
-                {url && (
+                {urlRef && (
                   <button
                     type="button"
-                    onClick={() => window.open(url, "_blank")}
+                    onClick={previewCV}
                     disabled={loading}
                     className={`bg-blue-500 hover:bg-blue-700 text-white py-0 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
