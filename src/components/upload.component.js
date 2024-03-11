@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadCandidateInfo } from "../services/uploadCandidateInfo.service";
 import Spinner from "./loader.component";
@@ -15,9 +15,11 @@ const Upload = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
-  const [url, setUrl] = useState("");
+  // const [url, setUrl] = useState("");
   const [key, setKey] = useState(Date.now());
-  const [triggerPreview, setTriggerPreview] = useState(false);
+  // const [triggerPreview, setTriggerPreview] = useState(false);
+
+  const urlRef = useRef("");
 
   const navigate = useNavigate();
 
@@ -30,24 +32,16 @@ const Upload = () => {
         phone_number: res.data.candidates.phone_number,
         cv: null,
       });
-      setUrl(res.data.url);
-      // if (triggerPreview) {
-      //   setTriggerPreview(false); // Reset the trigger to prevent multiple previews
-      // }
+      urlRef.current = res.data.url;
     }
   }
   function previewCV() {
-    fetchUserData();
-    setTriggerPreview(true); // Set the trigger to true to indicate a preview request
-    // This will eventually update the URL
+    fetchUserData().then(() => {
+      if (urlRef.current) {
+        window.open(urlRef.current, "_blank");
+      }
+    });
   }
-
-  useEffect(() => {
-    if (url && triggerPreview) {
-      window.open(url, "_blank"); // Open the URL only if it's updated and preview is triggered
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url, triggerPreview]);
 
   useEffect(() => {
     fetchUserData();
@@ -194,7 +188,7 @@ const Upload = () => {
                 size={100}
               />
               <div className="flex justify-end">
-                {url && (
+                {urlRef && (
                   <button
                     type="button"
                     onClick={previewCV}
