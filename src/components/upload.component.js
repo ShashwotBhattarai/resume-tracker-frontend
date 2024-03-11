@@ -17,6 +17,7 @@ const Upload = () => {
   const [success, setSuccess] = useState(null);
   const [url, setUrl] = useState("");
   const [key, setKey] = useState(Date.now());
+  const [triggerPreview, setTriggerPreview] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,8 +31,22 @@ const Upload = () => {
         cv: null,
       });
       setUrl(res.data.url);
+      if (triggerPreview) {
+        setTriggerPreview(false); // Reset the trigger to prevent multiple previews
+      }
     }
   }
+  function previewCV() {
+    setTriggerPreview(true); // Set the trigger to true to indicate a preview request
+    fetchUserData(); // This will eventually update the URL
+  }
+
+  useEffect(() => {
+    if (url && triggerPreview) {
+      window.open(url, "_blank"); // Open the URL only if it's updated and preview is triggered
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url, triggerPreview]);
 
   useEffect(() => {
     fetchUserData();
@@ -181,7 +196,7 @@ const Upload = () => {
                 {url && (
                   <button
                     type="button"
-                    onClick={() => window.open(url, "_blank")}
+                    onClick={previewCV}
                     disabled={loading}
                     className={`bg-blue-500 hover:bg-blue-700 text-white py-0 px-4 rounded focus:outline-none focus:shadow-outline ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
                   >
