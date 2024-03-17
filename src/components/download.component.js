@@ -70,6 +70,9 @@ const DownloadComponent = () => {
                   Email
                 </th>
                 <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                  Phone Number
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                   Action
                 </th>
               </tr>
@@ -85,6 +88,9 @@ const DownloadComponent = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm">
                     {candidate.email}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    {candidate.phone_number}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                     <button

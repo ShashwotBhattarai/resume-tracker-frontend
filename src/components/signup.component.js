@@ -58,8 +58,8 @@ const SignUpForm = () => {
             type="text"
             value={formData.username}
             onChange={handleChange}
-            pattern="[A-Za-z]+"
-            title="Username must contain only letters."
+            pattern="[A-Za-z0-9!@#$%^&*()_+=-]+"
+            title="Username can contain letters, numbers, and special characters like !@#$%^&*()_+=-."
             required
           />
 
@@ -72,7 +72,7 @@ const SignUpForm = () => {
             minLength="8"
             maxLength="16"
             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}"
-            title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, and one number."
+            title="Password must be 8-16 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
             required
           />
 
@@ -83,6 +83,8 @@ const SignUpForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            pattern="^[^@\s]+@[^@\s]+\.[c][o][m]$"
+            title="Email address must end with .com"
           />
 
           <div className="mb-6">

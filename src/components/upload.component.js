@@ -51,18 +51,22 @@ const Upload = () => {
   useEffect(() => {}, [formData.cv]);
 
   const handleInputChangeForFullName = (e) => {
+    setMessage("");
     setFormData({ ...formData, fullname: e.target.value });
   };
 
   const handleInputChangeForEmail = (e) => {
+    setMessage("");
     setFormData({ ...formData, email: e.target.value });
   };
 
   const handleInputChangeForPhoneNumber = (e) => {
+    setMessage("");
     setFormData({ ...formData, phone_number: e.target.value || null });
   };
 
   const handleInputChangeForCV = (e) => {
+    setMessage("");
     setFormData({ ...formData, cv: e.target.files[0] || null });
   };
 
@@ -130,6 +134,8 @@ const Upload = () => {
                 value={formData.fullname || ""}
                 onChange={handleInputChangeForFullName}
                 minLength="3"
+                pattern="[A-Za-z]+$"
+                title="Fullname must contain only letters."
                 required
               />
             </div>
@@ -168,6 +174,8 @@ const Upload = () => {
                 onChange={handleInputChangeForPhoneNumber}
                 minLength="10"
                 maxLength="14"
+                pattern="\+?[0-9]+$"
+                title="Phone number must contain only numbers and must be 10 to 14 digits long."
               />
             </div>
 
@@ -183,6 +191,7 @@ const Upload = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="cv"
                 type="file"
+                accept="application/pdf"
                 name="cv"
                 onChange={handleInputChangeForCV}
                 size={100}
